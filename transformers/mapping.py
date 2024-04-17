@@ -22,22 +22,22 @@ def transform(data, *args, **kwargs):
 
     COLUMN_MAP = {
                 'Haber Linki' : 'informant_of_data',
-                'Tarih':'tarih',
-                'Ay':'ay',
-                'İl':'il',
-                'Kadının Adı':'kadinin_adi',
-                'Kadının Yaşı':'kadinin_yasi',
-                'Kadının Çalışma Durumu':'kadinin_calisma_durumu',
+                'Tarih':'historical_date',
+                'Ay':'month_of_femicide',
+                'İl':'province_of_femicide',
+                'Kadının Adı':'women_name',
+                'Kadının Yaşı':'women_age',
+                'Kadının Çalışma Durumu':'women_employement_status',
                 'Engel Durumu' : 'women_disability_status',
-                'Bahane':'bahane',
-                'Silah':'silah',
-                'Katil / Şüphelinin Adı':'suphelinin_adi',
+                'Bahane':'pretext',
+                'Silah':'weapon',
+                'Katil / Şüphelinin Adı':'murderer_name',
                 'Katil / Şüphelinin Yaşı' : 'murderer_age',
-                'Katil / Şüphelinin Yakınlığı':'suphelinin_yakinligi',
-                'Nerede':'nerede',
-                'Öldürüldüğü anda 6284 var mı?':'olduruldugu_anda_6284_var_mi',
-                'Çocuk Bilgisi':'cocuk_bilgisi',
-                'Birliktelik Durumu':'birliktelik_durumu'
+                'Katil / Şüphelinin Yakınlığı':'by_whom',
+                'Nerede':'place_of_femicide',
+                'Öldürüldüğü anda 6284 var mı?':'protection_measure',
+                'Çocuk Bilgisi':'child_info',
+                'Birliktelik Durumu':'marital_status_of_women'
                 }
 
     
