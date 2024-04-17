@@ -6,6 +6,7 @@ if 'test' not in globals():
 
 import gspread
 import pandas as pd
+import numpy as np
 from oauth2client.service_account import ServiceAccountCredentials
 from gspread_dataframe import get_as_dataframe
 
@@ -179,8 +180,7 @@ femicide_data_frame["historical_date"] = femicide_data_frame["historical_date"].
 
 unknown_rules = ["*", "Tespit Edilemeyen", "Bilinmiyor", "?", "Belirtilmemiş" , "tespit edilemeyen" , "belirtilmemiş", "-", "BELİRTİLMEMİŞ", "bilinmiyor"]
 
-femicide_data_frame.replace(unknown_rules, "unknown", inplace=True) #replace metodu listelerle de çalışabiliyor
-
+femicide_data_frame.replace(unknown_rules, "unknown", inplace=True) 
 mask_2 = femicide_data_frame["women_age"].str.contains("-").fillna(False)
 femicide_data_frame.loc[mask_2 , "women_age"] = "unknown"
 femicide_data_frame[mask_2]
@@ -194,11 +194,8 @@ femicide_data_frame.loc[mask_3 , ["women_age"]] = "0"
 femicide_data_frame.loc[1799 , ["women_age"]] = "unknown"
 
 femicide_data_frame['women_age'] = pd.to_numeric(femicide_data_frame["women_age"], errors="ignore")
-#astype(int) değil de to_numeric kullanmamızın nedeni tabloda sayısal olmayan değerler olması. to_numeric kullandığımızda errors="ignore" diyerek hataları yoksayabiliyoruz.
 
-import numpy as np
 is_numeric = pd.to_numeric(femicide_data_frame['women_age'], errors='coerce')
-#astype(int) değil de to_numeric kullanmamızın nedeni tabloda sayısal olmayan değerler olması. to_numeric kullandığımızda errors="ignore" diyerek hataları yoksayabiliyoruz.
 
 
 conditions_of_ages = [
@@ -255,18 +252,17 @@ replace_rules = {
     r"Hamile": "pregnant"
 }
 
-# replace metodunu kullanarak değişiklikleri yap
+
 femicide_data_frame['child_info'] = femicide_data_frame['child_info'].replace(replace_rules, regex=True)
 
 child_is_null = femicide_data_frame['child_info'].isnull()
 femicide_data_frame.loc[child_is_null, 'child_info'] = femicide_data_frame.loc[child_is_null, 'number_of_children']
 
 femicide_data_frame = femicide_data_frame.loc[:, ~femicide_data_frame.columns.str.contains('number_of_children')]
-
 femicide_data_frame["month_of_femicide"] = femicide_data_frame["month_of_femicide"].astype(str).str.lower().str.strip()
 
 mask_4 = femicide_data_frame['month_of_femicide'].str.endswith(' ').fillna(False) 
-# Mask kullanarak sadece belirli satırları seç ve bu satırlardaki değerleri güncelle
+
 femicide_data_frame.loc[mask_4, 'month_of_femicide'] = femicide_data_frame.loc[mask_4, 'month_of_femicide'].str.rstrip()
 
 replace_rules = {
@@ -288,12 +284,9 @@ replace_rules = {
 
 }
 
-# replace metodunu kullanarak değişiklikleri yap
+
 femicide_data_frame['month_of_femicide'] = femicide_data_frame['month_of_femicide'].replace(replace_rules, regex=False)
-
 femicide_data_frame["province_of_femicide"] = femicide_data_frame["province_of_femicide"].astype(str).str.lower().str.strip()
-
-# '/' karakterine göre böl ve ilk kısmı sakla
 femicide_data_frame['province_of_femicide'] = femicide_data_frame['province_of_femicide'].str.split('/').str[0].str.strip()
 
 corrections = {
