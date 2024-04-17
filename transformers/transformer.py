@@ -7,8 +7,12 @@ if 'test' not in globals():
 import gspread
 import pandas as pd
 import numpy as np
+import pyarrow
+
+
 from oauth2client.service_account import ServiceAccountCredentials
 from gspread_dataframe import get_as_dataframe
+
 
 scope = [
     'https://www.googleapis.com/auth/spreadsheets',
@@ -769,6 +773,5 @@ femicide_data_frame = femicide_data_frame.loc[:, ~femicide_data_frame.columns.st
 
 femicide_data_frame.replace('unknown', np.nan, inplace=True)
 
-import pyarrow
 
 femicide_data_frame.to_parquet("2008_2023_femicide_data")
