@@ -766,3 +766,9 @@ femicide_data_frame["other_killed_or_injured"] = femicide_data_frame["other_kill
 
 femicide_data_frame = femicide_data_frame.loc[:, ~femicide_data_frame.columns.str.contains('murderer_is_law_enforcement')]
 femicide_data_frame = femicide_data_frame.loc[:, ~femicide_data_frame.columns.str.contains('murderer_age')]
+
+femicide_data_frame.replace('unknown', np.nan, inplace=True)
+
+import pyarrow
+
+femicide_data_frame.to_parquet("2008_2023_femicide_data")
