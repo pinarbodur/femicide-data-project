@@ -1,0 +1,12 @@
+version: 2
+
+macros:
+  - name: child_info
+    description: >
+      This macro receives woman has child or not
+    arguments:
+      - name: child_info
+        type: str
+        description: > 
+          gender_code value.
+          Must be one of the accepted values, otherwise the macro will return null

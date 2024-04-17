@@ -1,0 +1,4 @@
+config:
+  path_to_credentials_json_file: ./home/src/your_first_project/secret_key.json
+  dataset: femicide_dataset
+source: bigquery

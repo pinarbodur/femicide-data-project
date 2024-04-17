@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+    - name: dev
+      database: femicide-data-project
+      schema: femicide_dataset
+
+      tables:
+        - name: femicide_2023
+
+
+models:
+    - name: femicide_data_check
+      description: >
+        Test.
+      columns:
+          - name: tarih
+            description: Unique identifier for each femicide
+            tests:
+                - not_null:
+                    severity: warn
