@@ -21,15 +21,18 @@ def transform(data, *args, **kwargs):
     """
 
     COLUMN_MAP = {
+                'Haber Linki' : 'informant_of_data',
                 'Tarih':'tarih',
                 'Ay':'ay',
                 'İl':'il',
                 'Kadının Adı':'kadinin_adi',
                 'Kadının Yaşı':'kadinin_yasi',
                 'Kadının Çalışma Durumu':'kadinin_calisma_durumu',
+                'Engel Durumu' : 'women_disability_status',
                 'Bahane':'bahane',
                 'Silah':'silah',
                 'Katil / Şüphelinin Adı':'suphelinin_adi',
+                'Katil / Şüphelinin Yaşı' : 'murderer_age',
                 'Katil / Şüphelinin Yakınlığı':'suphelinin_yakinligi',
                 'Nerede':'nerede',
                 'Öldürüldüğü anda 6284 var mı?':'olduruldugu_anda_6284_var_mi',

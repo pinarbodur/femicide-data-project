@@ -1,9 +1,9 @@
 # femicide-data-project
 2008-2023 Femicide in Turkey
 
-![Workflow Diagram](workflow_diagram.png)
-
 # Turkey's Femicide Data Analysis Project (2008-2023)
+
+![Workflow Diagram](workflow_diagram.png)
 
 ## Project Overview
 This repository hosts an analytical project focused on the analysis of femicide cases in Turkey from 2008 to 2023. The project aims to automate and streamline the data handling processes that were previously managed manually via Google Sheets. By automating these processes, we reduce human errors and enforce data quality checks through our pipeline and with the help of dbt. Regular reports that were once crafted manually on a monthly basis are now automatically generated, enhancing efficiency and consistency.

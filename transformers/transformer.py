@@ -107,9 +107,11 @@ rename_rules = {
     'Katil / Şüphelinin Yaşı' : 'murderer_age' ,
     'Silah' : 'weapon' ,
     'Bahane' : 'pretext' ,
+    'Öldürüldüğü anda 6284 var mı?' : 'protection_measure' ,
     'Çocuk Sayısı' : 'number_of_children',
     'Çocuk Sayı' : 'number_of_children',
     'Çocuk_var_yok' : 'child_info' ,
+    'Birliktelik Durumu' : 'marital_status_of_women',
     'Çocuk Bilgisi' : 'child_info' 
 }
 
@@ -136,15 +138,17 @@ femicide_df['2017'].loc[132 , ['women_name']] = '*'
 femicide_df['2017'].loc[275 , ['women_name']] = '*'
 femicide_df['2017'].loc[281 , ['women_name']] = '*'
 
-
+# Concat
 femicide_data_frame = femicide_df['2008']
 
 for key, dfs in femicide_df.items():     
     if key != '2008':
         femicide_data_frame = pd.concat([femicide_data_frame, femicide_df[key]], ignore_index=True)
 
+# Remove Null Rows
 femicide_data_frame.dropna(subset=['women_name'] , inplace=True , ignore_index=True)
 
+# Corrections
 mask = femicide_data_frame['historical_date'].isnull()
 femicide_data_frame.loc[mask, 'historical_date'] = femicide_data_frame.loc[mask, 'partition_year']
 femicide_data_frame.filter(items=['historical_date', "partition_year"])
@@ -177,6 +181,7 @@ femicide_data_frame.loc[pyear_mask , 'partition_year'] = femicide_data_frame.loc
 
 femicide_data_frame['partition_year'] = femicide_data_frame['partition_year'].astype(str) 
 femicide_data_frame["historical_date"] = femicide_data_frame["historical_date"].apply(lambda x: x.replace('/', '.') if isinstance(x, str) and '/' in x else x)
+femicide_data_frame = femicide_data_frame.loc[:, ~femicide_data_frame.columns.str.contains('historical_date')]
 
 unknown_rules = ["*", "Tespit Edilemeyen", "Bilinmiyor", "?", "Belirtilmemiş" , "tespit edilemeyen" , "belirtilmemiş", "-", "BELİRTİLMEMİŞ", "bilinmiyor"]
 
@@ -215,6 +220,8 @@ values_of_ages = [
 ]
 
 femicide_data_frame["age_range"] = np.select(conditions_of_ages, values_of_ages, default="unknown")
+
+femicide_data_frame = femicide_data_frame.loc[:, ~femicide_data_frame.columns.str.contains('women_age')]
 
 
 conditions_values = {
@@ -259,6 +266,7 @@ child_is_null = femicide_data_frame['child_info'].isnull()
 femicide_data_frame.loc[child_is_null, 'child_info'] = femicide_data_frame.loc[child_is_null, 'number_of_children']
 
 femicide_data_frame = femicide_data_frame.loc[:, ~femicide_data_frame.columns.str.contains('number_of_children')]
+
 femicide_data_frame["month_of_femicide"] = femicide_data_frame["month_of_femicide"].astype(str).str.lower().str.strip()
 
 mask_4 = femicide_data_frame['month_of_femicide'].str.endswith(' ').fillna(False) 
@@ -756,4 +764,5 @@ corrections = {
 femicide_data_frame["other_killed_or_injured"] = femicide_data_frame["other_killed_or_injured"].replace(corrections, regex=False)
 
 
-
+femicide_data_frame = femicide_data_frame.loc[:, ~femicide_data_frame.columns.str.contains('murderer_is_law_enforcement')]
+femicide_data_frame = femicide_data_frame.loc[:, ~femicide_data_frame.columns.str.contains('murderer_age')]
