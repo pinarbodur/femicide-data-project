@@ -56,3 +56,8 @@ This project is licensed under a standard open-source license, which provides fr
 ## Note
 We handle data with utmost respect for the sensitivity of the subject matter, aiming to make a positive societal impact on the issue of femicide in Turkey.
 
+![Visualization Analyzes](visualization_analyzes_1.png)
+
+![Visualization Analyzes](visualization_analyzes_2.png)
+
+![Visualization Analyzes](visualization_analyzes_3.png)
