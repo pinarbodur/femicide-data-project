@@ -10,9 +10,6 @@ This repository hosts an analytical project focused on the analysis of femicide 
 
 The project also seeks to automate the creation of dashboards and graphs, which are standardized and were previously visualized using data from Google Drive. With Looker Studio, we aim to update and visualize these elements more swiftly and automatically. The data used in this project is maintained by the "Kadın Cinayetlerini Durduracağız" platform, ensuring that the source is acknowledged and utilized responsibly.
 
-## Future Note
-Looking ahead, we plan to replace MageAI with Apache Airflow to further streamline our data orchestration, considering its robustness and production readiness. Additionally, future phases of the project will directly integrate with Google Drive and Sheets, enabling seamless data connectivity and accessibility.
-
 ## Data Source
 Data for this project is sourced from the "Kadın Cinayetlerini Durduracağız" platform. Due to constraints around data sharing, only a sample dataset is included in this repository. Full datasets are visualized and managed through protected Looker Studio dashboards.
 
@@ -35,6 +32,9 @@ Data for this project is sourced from the "Kadın Cinayetlerini Durduracağız" 
 - **BigQuery**: Used for data storage and complex querying tasks.
 - **dbt (data build tool)**: Facilitates data transformation, testing, and deployment within managed cloud environments.
 - **Looker Studio**: Employs the final transformed data for visualization purposes, generating insightful dashboards and reports.
+
+## Future Note
+Looking ahead, we plan to replace MageAI with Apache Airflow to further streamline our data orchestration, considering its robustness and production readiness. Additionally, future phases of the project will directly integrate with Google Drive and Sheets, enabling seamless data connectivity and accessibility.
 
 ## Tools and Technologies
 - **[MageAI](https://mage.ai/docs)**: For data extraction and preparation. Planned to be replaced by **[Apache Airflow](https://airflow.apache.org/)** in future iterations for enhanced data orchestration.
