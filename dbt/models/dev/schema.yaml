@@ -1,21 +1,21 @@
+
 version: 2
 
 sources:
-    - name: dev
-      database: femicide-data-project
-      schema: femicide_dataset
+  - name: base # this is the source_name
+    database: femicide-data-project
+    schema: femicide_tr_dataset
 
-      tables:
-        - name: femicide_2023
+    tables:
+      - name: femicide_2023
+  
 
 
 models:
     - name: femicide_data_check
-      description: >
-        Test.
+      description: "Extracts the informant of femicide data along with historical dates and months of femicide from the femicide_2023 base table."
       columns:
-          - name: tarih
-            description: Unique identifier for each femicide
+          - name: informant_of_data
+            description: "Femicide date"
             tests:
-                - not_null:
-                    severity: warn
+                - not_null

@@ -1,8 +1,0 @@
-{{ config(materialized='view') }}
-
-SELECT tarih
-,ay
-,il
-FROM {{ source('staging','femicide_2023')}}
-WHERE ay is not null
-AND tarih is not null
